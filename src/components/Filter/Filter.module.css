@@ -1,0 +1,19 @@
+.filterHeader {
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1px;
+}
+
+.filterInput {
+  box-sizing: border-box;
+  width: 50%;
+  height: 30px;
+  font-size: 20px;
+  align-self: flex-start;
+  outline: none;
+  border: 1px solid #5d3bbc;
+  color: blueviolet;
+}
+.filterInput:focus-within {
+  border: 3px solid #5d3bbc;
+  color: violet;
+}

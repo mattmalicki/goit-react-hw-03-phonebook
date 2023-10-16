@@ -1,0 +1,14 @@
+.appContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.appHeader {
+  font-weight: 700;
+  font-size: 32px;
+}

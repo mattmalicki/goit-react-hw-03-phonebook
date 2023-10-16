@@ -1,0 +1,39 @@
+.contactList {
+  list-style-position: outside;
+  list-style-type: square;
+}
+
+.contactItem {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.contactName {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.contactNumber {
+  text-decoration: wavy;
+}
+
+.contactButton {
+  width: 200px;
+  height: 30px;
+  background-color: transparent;
+  border: 2px dotted black;
+}
+
+.contactButton:hover,
+.contactButton:focus {
+  border: 0;
+  border-bottom: 0.5px solid black;
+}
+
+.contactButton:active {
+  background-color: black;
+}
