@@ -3,6 +3,7 @@ import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
 import { nanoid } from 'nanoid';
+import { saveStorage, loadStorage } from '../../js/localStorage';
 import styles from './App.module.css';
 
 export class App extends Component {
@@ -26,11 +27,10 @@ export class App extends Component {
     }
     const id = nanoid();
     contacts.push({ id, name, number });
-    this.setState(state => ({
-      contacts: state.contacts,
-    }));
+    this.updateContacts(contacts);
     form.reset();
   };
+
   filter = event => {
     event.preventDefault();
     const filter = event.target.value;
@@ -38,6 +38,7 @@ export class App extends Component {
       filter: filter,
     });
   };
+
   deleteContact = event => {
     event.preventDefault();
     if (event.target.nodeName !== 'BUTTON') {
@@ -49,12 +50,29 @@ export class App extends Component {
       contacts.map(obj => (obj.id === id ? contacts.indexOf(obj) : null)),
       1
     );
-    this.setState({
-      contacts: contacts,
-    });
+    this.updateContacts(contacts);
   };
+
+  updateContacts = contacts => {
+    this.setState({ contacts });
+    saveStorage('contacts', contacts);
+  };
+
+  componentDidMount() {
+    const contacts = loadStorage('contacts');
+    contacts && this.updateContacts(contacts);
+  }
+
+  shouldComponentUpdate(nextState) {
+    if (this.state.contacts !== nextState.contacts) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
-    const filtered = this.state.contacts.filter(obj =>
+    const contacts = this.state.contacts;
+    const filtered = contacts.filter(obj =>
       obj.name.includes(this.state.filter)
     );
     return (
