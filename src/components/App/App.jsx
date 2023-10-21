@@ -17,10 +17,10 @@ export class App extends Component {
     const name = form.name.value;
     const number = form.number.value;
     const contacts = this.state.contacts;
-    let isInPhonebook = false;
-    contacts.map(contact =>
-      contact.name === name ? (isInPhonebook = true) : null
-    );
+    const isInPhonebook =
+      contacts.filter(contact => contact.name === name).length > 0
+        ? true
+        : false;
     if (isInPhonebook) {
       alert(name + ' is already in contacts');
       return;
